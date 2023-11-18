@@ -1,7 +1,7 @@
 <template>
   <div class="p-6 bg-gray-200">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      <div v-for="product in products" :key="product.id" class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div v-for="product in availableProducts" :key="product.id" class="bg-white rounded-lg shadow-md overflow-hidden">
         <img :src="product.thumbnail" alt="product image" class="w-full h-48 object-cover">
         <div class="p-4">
           <h3 class="text-lg font-semibold">{{ product.title }}</h3>
@@ -25,6 +25,11 @@ export default {
   name: 'ProductList',
   props: {
     products: Array
+  },
+  computed: {
+    availableProducts() {
+      return this.products.filter(product => product.stock > 0);
+    }
   }
 }
 </script>
