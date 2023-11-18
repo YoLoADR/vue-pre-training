@@ -1,13 +1,21 @@
 <template>
   <div class="p-6 bg-blue-500 text-white">
-    <p>HeaderNavbar Menu</p>
-    <!-- Contenu de votre HeaderNavbar -->
+    <nav>
+      <ul class="flex">
+        <li v-for="link in links" :key="link.name" class="mr-6">
+          <a :href="link.href" :class="{ 'font-bold': link.current }">{{ link.name }}</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 
 <script>
 export default {
   name: 'HeaderNavbar',
+  props: {
+    links: Array
+  }
 }
 </script>
 

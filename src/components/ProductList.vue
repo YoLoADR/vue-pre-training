@@ -1,14 +1,31 @@
 <template>
-  <!-- Liste de produits (ProductList) -->
-    <div class="p-6 bg-red-500 text-white flex-grow">
-      <p>Liste de produits</p>
-      <!-- Contenu de votre liste de produits -->
+  <div class="p-6 bg-gray-200">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div v-for="product in products" :key="product.id" class="bg-white rounded-lg shadow-md overflow-hidden">
+        <img :src="product.thumbnail" alt="product image" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h3 class="text-lg font-semibold">{{ product.title }}</h3>
+          <p class="text-gray-700">{{ product.description }}</p>
+          <div class="mt-2">
+            <span class="text-lg font-bold">${{ product.price }}</span>
+          </div>
+          <div class="mt-4">
+            <a href="#" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300">
+              View Details
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'ProductList',
+  props: {
+    products: Array
+  }
 }
 </script>
 

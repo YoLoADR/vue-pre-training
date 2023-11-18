@@ -1,8 +1,8 @@
 <template>
     <div class="flex flex-col min-h-screen">
-        <HeaderNavbar />
-        <HeroSection />
-        <ProductList />
+        <HeaderNavbar :links="headerNavLinks" />
+        <HeroSection :backgroundImage="heroBackgroundImage" />
+        <ProductList :products="products" />
         <MainFooter />
     </div>
 </template>
@@ -13,6 +13,9 @@ import HeroSection from '@/components/HeroSection.vue';
 import ProductList from '@/components/ProductList.vue';
 import MainFooter from '@/components/MainFooter.vue';
 
+import { productsDB } from '@/db/productsDB.js';
+import { mainDB } from '@/db/mainDB.js';
+
 export default {
     name: 'HomePage',
     components: {
@@ -20,6 +23,13 @@ export default {
         HeroSection,
         ProductList,
         MainFooter
+    },
+    data() {
+        return {
+            products: productsDB.products,
+            heroBackgroundImage: mainDB.heroBackgroundImage,
+            headerNavLinks: mainDB.headerNavLinks
+        };
     }
 }
 </script>
