@@ -2,7 +2,10 @@
     <div class="flex flex-col min-h-screen">
         <HeaderNavbar :links="headerNavLinks" />
         <HeroSection :backgroundImage="heroBackgroundImage" />
-        <ProductList :products="products" />
+        <ProductList :products="products" @addToCart="addToCart" />
+        <div class="p-6">
+            <h2>Total du Panier: ${{ totalPrice }}</h2>
+        </div>
         <MainFooter />
     </div>
 </template>
@@ -28,8 +31,24 @@ export default {
         return {
             products: productsDB.products,
             heroBackgroundImage: mainDB.heroBackgroundImage,
-            headerNavLinks: mainDB.headerNavLinks
+            headerNavLinks: mainDB.headerNavLinks,
+            cart: []
         };
+    },
+    computed: {
+        totalPrice() {
+            return this.cart.reduce((total, item) => total + item.price * item.quantity, 0);
+        }
+    },
+    methods: {
+        addToCart(product) {
+            let found = this.cart.find(item => item.id === product.id);
+            if (found) {
+                found.quantity++;
+            } else {
+                this.cart.push({ ...product, quantity: 1 });
+            }
+        }
     }
 }
 </script>

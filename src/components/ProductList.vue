@@ -14,6 +14,10 @@
               View Details
             </a>
           </div>
+
+          <button @click="$emit('addToCart', product)" class="mt-4 bg-green-500 text-white py-2 px-4 rounded">
+            Ajouter au Panier
+          </button>
         </div>
       </div>
     </div>
