@@ -3,7 +3,7 @@
     <nav>
       <ul class="flex">
         <li v-for="link in links" :key="link.name" class="mr-6">
-          <a :href="link.href" :class="{ 'font-bold': link.current }">{{ link.name }}</a>
+          <router-link :to="link.href" :class="{ 'font-bold': link.current }">{{ link.name }}</router-link>
         </li>
       </ul>
     </nav>

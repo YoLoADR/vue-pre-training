@@ -4,7 +4,9 @@
       <div v-for="product in availableProducts" :key="product.id" class="bg-white rounded-lg shadow-md overflow-hidden">
         <img :src="product.thumbnail" alt="product image" class="w-full h-48 object-cover">
         <div class="p-4">
-          <h3 class="text-lg font-semibold">{{ product.title }}</h3>
+          <router-link :to="`/produits/${product.id}`">
+            <h3 class="text-lg font-semibold">{{ product.title }}</h3>
+          </router-link>
           <p class="text-gray-700">{{ product.description }}</p>
           <div class="mt-2">
             <span class="text-lg font-bold">${{ product.price }}</span>
@@ -38,6 +40,4 @@ export default {
 }
 </script>
 
-<style scoped>
-/* Styles spécifiques à ProductList ici */
-</style>
+<style scoped>/* Styles spécifiques à ProductList ici */</style>

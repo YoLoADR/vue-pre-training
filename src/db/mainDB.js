@@ -5,6 +5,7 @@ export const mainDB = {
       { name: 'À propos', href: '/about', current: false },
       { name: 'Utilisateurs', href: '/user', current: false },
       { name: 'Produits', href: '/produits', current: false },
+      { name: 'Contact', href: '/contact', current: false },
     ]
   };
   
