@@ -25,6 +25,9 @@
 </template>
   
 <script>
+
+import router from '@/router';
+
 export default {
     name: 'AddProductForm',
     data() {
@@ -102,7 +105,9 @@ export default {
                             'https://via.placeholder.com/600x600'
                         ]
                     };
+                    router.push('/');
                 }, 1000);
+
             }
         }
     }
