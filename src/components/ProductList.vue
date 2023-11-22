@@ -32,6 +32,9 @@ export default {
   props: {
     products: Array
   },
+  mounted() {
+    this.$store.dispatch('fetchProducts', false); // Mettez `true` pour utiliser les données mockées
+  },
   computed: {
     availableProducts() {
       //return this.products.filter(product => product.stock > 0);

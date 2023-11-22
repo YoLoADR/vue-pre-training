@@ -1,11 +1,12 @@
 import { createStore } from 'vuex';
 import { productsDB } from '@/db/productsDB.js';
+import { apiService } from '@/services/apiService';
 
 export default createStore({
   state() {
     return {
       isAuthenticated: false,
-      products: productsDB.products // Initialisez les produits avec les données de la mock database
+      products: []
     };
   },
   mutations: {
@@ -18,6 +19,9 @@ export default createStore({
     ADD_PRODUCT(state, product) {
       state.products.push(product);
     },
+    SET_PRODUCTS(state, products) {
+      state.products = products;
+    },
   },
   actions: {
     authenticateUser(context) {
@@ -28,6 +32,19 @@ export default createStore({
     },
     addProduct({ commit }, product) {
       commit('ADD_PRODUCT', product);
+    },
+    fetchProducts({ commit }, useMockData = true) {
+      if (useMockData) {
+        commit('SET_PRODUCTS', productsDB.products);
+      } else {
+        apiService.fetchProducts()
+          .then(products => {
+            commit('SET_PRODUCTS', products);
+          })
+          .catch(error => {
+            console.error("Erreur lors de la récupération des produits :", error);
+          });
+      }
     },
   },
   getters: {
