@@ -32,7 +32,18 @@ export default {
             formData: {
                 title: '',
                 description: '',
-                price: ''
+                price: '',
+                discountPercentage: 10,  // Valeur par défaut pour la remise
+                rating: 5,               // Valeur par défaut pour la note
+                stock: 50,               // Valeur par défaut pour le stock
+                brand: 'Marque générique', // Valeur par défaut pour la marque
+                category: 'catégorie',    // Valeur par défaut pour la catégorie
+                thumbnail: 'https://via.placeholder.com/800x600', // Image par défaut
+                images: [                // Images par défaut
+                    'https://via.placeholder.com/600x600',
+                    'https://via.placeholder.com/600x600',
+                    'https://via.placeholder.com/600x600'
+                ]
             },
             errors: {}
         };
@@ -69,11 +80,28 @@ export default {
         handleSubmit() {
             if (this.validateForm()) {
                 console.log('Envoi des données du formulaire:', this.formData);
+                this.$store.dispatch('addProduct', this.formData);
                 // Simuler l'envoi des données et la réponse
                 setTimeout(() => {
                     alert('Produit ajouté avec succès!');
                     // Réinitialiser le formulaire
-                    this.formData = { title: '', description: '', price: '' };
+                    this.formData = {
+                        title: '',
+                        description: '',
+                        price: '',
+                        // Réinitialiser les autres champs ici aussi
+                        discountPercentage: 10,
+                        rating: 5,
+                        stock: 50,
+                        brand: 'Marque générique',
+                        category: 'catégorie',
+                        thumbnail: 'https://via.placeholder.com/800x600',
+                        images: [
+                            'https://via.placeholder.com/600x600',
+                            'https://via.placeholder.com/600x600',
+                            'https://via.placeholder.com/600x600'
+                        ]
+                    };
                 }, 1000);
             }
         }
