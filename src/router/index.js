@@ -2,7 +2,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import HomePage from '@/views/HomePage.vue';
-// import About from '../views/About.vue';
+import AboutPage from '@/views/AboutPage.vue';
 import UserProfile from '../views/UserProfile.vue';
 // import Products from '../views/Products.vue';
 import ProductDetail from '@/views/ProductDetail.vue';
@@ -11,7 +11,7 @@ import ContactPage from '@/views/ContactPage.vue';
 
 const routes = [
   { path: '/', name: 'Accueil', component: HomePage },
-//   { path: '/about', name: 'À propos', component: About },
+  { path: '/about', name: 'À propos', component: AboutPage },
   {
     path: '/user-profile',
     name: 'UserProfile',

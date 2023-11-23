@@ -33,7 +33,7 @@ export default {
     products: Array
   },
   mounted() {
-    this.$store.dispatch('fetchProducts', false); // Mettez `true` pour utiliser les données mockées
+    this.$store.dispatch('fetchProducts', true); // Mettez `true` pour utiliser les données mockées
   },
   computed: {
     availableProducts() {
