@@ -8,7 +8,7 @@
       </ul>
     </nav>
     <div>
-      <button v-if="!isLoggedIn" @click="login"
+      <button v-if="!isAuthenticated" @click="login"
         class="py-2 px-4 bg-green-600 rounded hover:bg-green-700 transition duration-300">Login</button>
       <div v-else class="flex items-center">
         <img src="https://via.placeholder.com/32" alt="User" class="rounded-full mr-2">
@@ -19,25 +19,27 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'HeaderNavbar',
-  props: {
-    links: Array
-  },
-  data() {
-    return {
-      isLoggedIn: false
-    };
-  },
-  methods: {
-    login() {
-      this.isLoggedIn = true;
-    },
-    logout() {
-      this.isLoggedIn = false;
-    }
-  }
+<script setup>
+import { useAuth } from '../composables/useAuth';
+import { defineProps } from "vue";
+
+
+// Définition des props sans les assigner à une variable
+defineProps({
+  links: Array
+});
+
+// Utilisation du composable useAuth
+const { isAuthenticated, authenticateUser, logoutUser } = useAuth();
+
+// Fonction de connexion
+function login() {
+  authenticateUser();
+}
+
+// Fonction de déconnexion
+function logout() {
+  logoutUser();
 }
 </script>
 

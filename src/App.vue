@@ -2,11 +2,10 @@
   <router-view />
 </template>
 
-<script>
+<script setup>
+import { provideAuth } from './composables/useAuth';
 
-export default {
-  name: 'App',
-}
+provideAuth();
 </script>
 
 <style></style>
