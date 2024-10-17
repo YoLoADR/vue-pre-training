@@ -1,8 +1,6 @@
 <template>
   <div class="p-6 bg-gray-200">
-    <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-    >
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       <div
         v-for="product in availableProducts"
         :key="product.id"
@@ -29,7 +27,6 @@
               View Details
             </a>
           </div>
-
           <button
             @click="$emit('addToCart', product)"
             class="mt-4 bg-green-500 text-white py-2 px-4 rounded"
@@ -42,18 +39,12 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "ProductList",
-  props: {
-    products: Array,
-  },
-  computed: {
-    availableProducts() {
-      return this.products.filter((product) => product.stock > 0);
-    },
-  },
-};
+<script setup>
+import { useProducts } from '@/composables/useProducts';
+
+const { availableProducts } = useProducts();
+
+// L'émission de l'événement 'addToCart' est gérée directement dans le template
 </script>
 
 <style scoped>
